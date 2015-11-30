@@ -1,1 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    
+<!-- namespace="dao.NoticeDao 인터페이스 동일 경로 
+     구현된되는 ID 값들을 인터페이스 함수명과 동일
+ -->
+<mapper namespace="kr.co.salad.dao.Memer_DAO">
+ <insert id="insert">
+      <selectKey order="BEFORE" keyProperty="seq" resultType="String">
+       SELECT NVL(MAX(TO_NUMBER(SEQ)),0)+1 FROM member
+      </selectKey>
+     INSERT INTO MEMBER VALUES(seq_m_num.nextval, 'admin@kosta.com', '10041004', 'admin', '관리', '관리', '010-1234-1234', 1)
+</insert>
+   
+   
+</mapper>
+
+<!-- 
+ 추후 참고 자료
+
+<resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap">
+  <id column="id" property="id"/>
+  <result column="name" property="name"/>
+  <result column="funkyNumber" property="funkyNumber"/>
+  <result column="roundingMode" property="roundingMode"/>
+ </resultMap>
+
+ <select id="getUser" resultMap="usermap">
+  select * from users
+ </select>
+ <insert id="insert">
+     insert into users (id, name, funkyNumber, roundingMode) values (
+      #{id}, #{name}, #{funkyNumber}, #{roundingMode}
+     )
+ </insert>
+ 
+ <resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap2">
+  <id column="id" property="id"/>
+  <result column="name" property="name"/>
+  <result column="funkyNumber" property="funkyNumber"/>
+  <result column="roundingMode" property="roundingMode" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+ </resultMap>
+ <select id="getUser2" resultMap="usermap2">
+  select * from users2
+ </select>
+ <insert id="insert2">
+     insert into users2 (id, name, funkyNumber, roundingMode) values (
+      #{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
+     )
+ </insert> -->
