@@ -19,7 +19,7 @@
 	<security:intercept-url pattern="/board/boardDelete.do*" access="hasRole('ROLE_LEADER')"/>
 	<security:intercept-url pattern="/notice/noticeInsert.do*" access="hasRole('ROLE_LEADER')"/>
 	<security:intercept-url pattern="/card/cardDelete.do*" access="hasRole('ROLE_LEADER')"/>
-	<security:intercept-url pattern="/main/goalInsert.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/main/goalModify.do*" access="hasRole('ROLE_LEADER')"/>
 	<security:intercept-url pattern="/project/projectmemberDelete.do*" access="hasRole('ROLE_LEADER')"/>
 </security:http>
 
