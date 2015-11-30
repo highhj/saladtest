@@ -9,22 +9,29 @@
 
 <security:http>
 <security:csrf disabled="true"/>
-<security:form-login login-page="/joinus/login.htm"
+<security:form-login login-page="/joinus/login.do"
 	                         authentication-failure-url="/joinus/login.htm?error" />
 	                         <security:logout logout-success-url="/index.htm" />
-	<security:intercept-url pattern="/login.html*" access="ROLE_NOMAL"/>
-	<security:intercept-url pattern="/admin.html*" access="ROLE_ADMIN"/>
+	<security:intercept-url pattern="/*/*.do" access="hasAnyRole('ROLE_NOMAL','ROLE_STAFF','ROLE_LEADER')"/>
+	<security:intercept-url pattern="/login/login.do*" access="hasRole('ROLE_NOMAL')"/>
+	<security:intercept-url pattern="/admin/admin.do*" access="hasRole('ROLE_ADMIN')"/>
+	<security:intercept-url pattern="/project/projectDelete.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/board/boardDelete.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/notice/noticeInsert.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/card/cardDelete.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/main/goalInsert.do*" access="hasRole('ROLE_LEADER')"/>
+	<security:intercept-url pattern="/project/projectmemberDelete.do*" access="hasRole('ROLE_LEADER')"/>
 </security:http>
 
 
 	<security:authentication-manager>
 		<security:authentication-provider>
 			    <security:jdbc-user-service data-source-ref="driverManagerDataSource"
-												   users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member where userid=?" 
-												   authorities-by-username-query="select m.USERID , r.ROLE_NAME  
-												           from member m join roll r 
-												           on m.userid = r.userid 
-												           where m.userid=?" />
+												   users-by-username-query="SELECT m_email as USERID, pwd AS PASSWORD, 1 enabled FROM member where m_email=?" 
+												   authorities-by-username-query="select m.m_num , a.ROLE_NAME, a.p_num  
+												           from member m join authorities a
+												           on m.m_num = a.m_num
+												           where m.m_num=? and a.p_num=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
 
