@@ -10,6 +10,12 @@
  -->
 <mapper namespace="kr.co.salad.dao.Memer_DAO">
  <insert id="insert">
+<<<<<<< HEAD
+=======
+      <selectKey order="BEFORE" keyProperty="seq" resultType="String">
+       SELECT NVL(MAX(TO_NUMBER(SEQ)),0)+1 FROM member
+      </selectKey>
+>>>>>>> master
      INSERT INTO MEMBER VALUES(seq_m_num.nextval, 'admin@kosta.com', '10041004', 'admin', '관리', '관리', '010-1234-1234', 1)
 </insert>
    
