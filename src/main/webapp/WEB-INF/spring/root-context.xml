@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
@@ -13,6 +17,9 @@
 		<property name="username" value="cfive"></property>
 		<property name="password" value="1004"></property>
 	</bean>
+	
+	
+	
 
 	<!-- 다중파일 업로드 -->
 	<bean id="multipartResolver"
@@ -24,9 +31,10 @@
 	<!-- Mybatis 설정 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource" />
-		<property value="classpath*:kr/co/salad/mapper/*xml" name="mapperLocations" />
+		<property value="classpath*:kr/co/saladtest/mapper/*xml" name="mapperLocations" />
 	</bean>
 
+	
 
 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
 		<constructor-arg ref="sqlSessionFactoryBean" index="0" />
