@@ -11,13 +11,13 @@ public class LoginFormController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginFormController.class);
 	
-	@RequestMapping("loginForm.blog")
+	@RequestMapping("loginForm.do")
 	public ModelAndView main() {
 		
 		logger.info("LoginController INIT");
 		
 		ModelAndView mav = new ModelAndView("main");
-		mav.setViewName("user/loginForm");
+		mav.setViewName("login/loginForm");
 		
 		return mav; 
 		

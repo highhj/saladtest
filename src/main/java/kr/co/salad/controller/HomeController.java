@@ -17,12 +17,12 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest request) {
 		logger.info("WelCome MY BLOG!!!!");
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/main");
+		mv.setViewName("main");
 		
 		return mv;
 	}

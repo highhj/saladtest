@@ -12,12 +12,12 @@
   <select id="getLoginResult" parameterType="java.util.Map"  resultType="Integer">
 	    SELECT 
 	    	COUNT(M_EMAIL) 
-	    FROM BLOG_USER
+	    FROM MEMBER
 	    WHERE M_EMAIL = #{m_email}
 	    AND M_PWD = #{m_pwd}
 	</select>
 	
-	<select id="getUserInfo" parameterType="String"  resultType="com.blog.vo.UserVo">
+	<select id="getUserInfo" parameterType="String"  resultType="kr.co.saladtest.vo">
 	    SELECT SEQ_M_NUM, M_EMAIL, M_PWD, M_NAME, M_DEPT, M_JOB, M_PHONE
 			FROM MEMBER
 		WHERE M_EMAIL = #{m_email}
@@ -30,8 +30,8 @@
 	    WHERE M_EMAIL = #{m_email}
 	</select>
 	
-	<update id="insertUser" parameterType="com.blog.vo.UserVo">
-		INSERT INTO BLOG_USER(U_ID, U_PASSWORD, U_NAME, U_MAIL) VALUES(#{userId},#{userPassword},#{userName},#{userEmail})
+	<update id="insertUser" parameterType="kr.co.saladtest.vo">
+	
 		INSERT INTO MEMBER(M_NUM, M_EMAIL, M_PWD , M_NAME, ENABLED) VALUES(seq_m_num.nextval, #{m_email}
 		, #{m_pwd}, #{m_name}, 1)
 	

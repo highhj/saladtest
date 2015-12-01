@@ -49,7 +49,7 @@ public class LoginController {
 		if (loginValue == 1)
 		{
 			logger.info("로그인성공");
-			mav.setViewName("blog/blogMain");
+			mav.setViewName("main/main");
 			memberDTO = memberDAOImpl.getUserInfo(m_email);
 			
 			session.setAttribute("m_email", memberDTO.getM_email());
