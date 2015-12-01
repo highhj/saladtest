@@ -9,49 +9,31 @@
      구현된되는 ID 값들을 인터페이스 함수명과 동일
  -->
 <mapper namespace="kr.co.salad.dao.Memer_DAO">
- <insert id="insert">
-<<<<<<< HEAD
-=======
-      <selectKey order="BEFORE" keyProperty="seq" resultType="String">
-       SELECT NVL(MAX(TO_NUMBER(SEQ)),0)+1 FROM member
-      </selectKey>
->>>>>>> master
-     INSERT INTO MEMBER VALUES(seq_m_num.nextval, 'admin@kosta.com', '10041004', 'admin', '관리', '관리', '010-1234-1234', 1)
-</insert>
-   
-   
+  <select id="getLoginResult" parameterType="java.util.Map"  resultType="Integer">
+	    SELECT 
+	    	COUNT(M_EMAIL) 
+	    FROM BLOG_USER
+	    WHERE M_EMAIL = #{m_email}
+	    AND M_PWD = #{m_pwd}
+	</select>
+	
+	<select id="getUserInfo" parameterType="String"  resultType="com.blog.vo.UserVo">
+	    SELECT SEQ_M_NUM, M_EMAIL, M_PWD, M_NAME, M_DEPT, M_JOB, M_PHONE
+			FROM MEMBER
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<select id="getUserIdCheck" parameterType="String"  resultType="Integer">
+	   SELECT 
+	    	COUNT(M_EMAIL) 
+	    FROM MEMBER
+	    WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<update id="insertUser" parameterType="com.blog.vo.UserVo">
+		INSERT INTO BLOG_USER(U_ID, U_PASSWORD, U_NAME, U_MAIL) VALUES(#{userId},#{userPassword},#{userName},#{userEmail})
+		INSERT INTO MEMBER(M_NUM, M_EMAIL, M_PWD , M_NAME, ENABLED) VALUES(seq_m_num.nextval, #{m_email}
+		, #{m_pwd}, #{m_name}, 1)
+	
+	</update>
 </mapper>
-
-<!-- 
- 추후 참고 자료
-
-<resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap">
-  <id column="id" property="id"/>
-  <result column="name" property="name"/>
-  <result column="funkyNumber" property="funkyNumber"/>
-  <result column="roundingMode" property="roundingMode"/>
- </resultMap>
-
- <select id="getUser" resultMap="usermap">
-  select * from users
- </select>
- <insert id="insert">
-     insert into users (id, name, funkyNumber, roundingMode) values (
-      #{id}, #{name}, #{funkyNumber}, #{roundingMode}
-     )
- </insert>
- 
- <resultMap type="org.apache.ibatis.submitted.rounding.User" id="usermap2">
-  <id column="id" property="id"/>
-  <result column="name" property="name"/>
-  <result column="funkyNumber" property="funkyNumber"/>
-  <result column="roundingMode" property="roundingMode" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
- </resultMap>
- <select id="getUser2" resultMap="usermap2">
-  select * from users2
- </select>
- <insert id="insert2">
-     insert into users2 (id, name, funkyNumber, roundingMode) values (
-      #{id}, #{name}, #{funkyNumber}, #{roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler}
-     )
- </insert> -->

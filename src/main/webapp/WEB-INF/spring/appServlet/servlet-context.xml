@@ -8,7 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- Scans the classpath of this application for @Components to deploy as beans -->
 	
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 

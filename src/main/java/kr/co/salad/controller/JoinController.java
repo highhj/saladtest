@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class JoinController {
 private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
 	
-@RequestMapping("join.do")
+@RequestMapping("/join.do")
 public ModelAndView main() {
 	
 	ModelAndView mav = new ModelAndView("main");
-	mav.setViewName("/join/join.jsp");
+	mav.setViewName("/join/joinForm");
 	
 	return mav; 
 	}

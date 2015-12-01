@@ -9,8 +9,8 @@
 
 <security:http>
 <security:csrf disabled="true"/>
-<security:form-login login-page="/joinus/login.do"
-	                         authentication-failure-url="/joinus/login.htm?error" />
+<security:form-login login-page="/login/loginForm.jsp"
+	                         authentication-failure-url="/login/login.do?error" />
 	                         <security:logout logout-success-url="/index.htm" />
 	<security:intercept-url pattern="/*/*.do" access="hasAnyRole('ROLE_NOMAL','ROLE_STAFF','ROLE_LEADER')"/>
 	<security:intercept-url pattern="/login/login.do*" access="hasRole('ROLE_NOMAL')"/>
